@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../lib/echarts.js"></script>
+</head>
+<body>
+    <div style="width: 600px;height: 400px;"></div>
+</body>
+<script>
+    var myEcharts = echarts.init(document.querySelector('div'))
+    var xArr = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
+    // var yArr = [893,8393,2893,8693,6893,4893,642,4563,2455,7843,8322,2247]
+    var yArr = [3891,3833,3824,3856,3811,3856,3875,3833,3857,3877,3886,3871]
+    var option = {
+        title:{
+            text:'销量图'
+        },
+        tooltip:{},
+        xAxis:{
+            type:'category',
+            data:xArr,
+            //紧挨边缘
+            boundaryGap:false
+        },
+        yAxis:{
+            type:'value',
+            //缩放 y轴默认是从0开始的 设置之后从最小值开始
+            scale:true
+        },
+        series:[
+            {
+                name:'销量',
+                type:'line',
+                data:yArr,
+                //平滑
+                smooth:true,
+                lineStyle:{
+                    type:'dashed'
+                },
+                //填充风格
+                areaStyle:{
+                    color:'pink'
+                },
+                markPoint:{
+                    data:[
+                        //最大值
+                        {type:'max',name:'最大值'},
+                        //最小值
+                        {type:'min',name:'最小值'},
+                    ]
+                },
+                markLine:{
+                    data:[
+                        {
+                            type:'average',name:'平均值'
+                        }
+                    ]
+                },
+                //标注区间
+                markArea: {
+                    data: [
+                        [
+                            //开始
+                            {
+                                xAxis:'1月'
+                            },
+                            //结束
+                            {
+                                xAxis:'2月'
+                            }
+                        ],
+                        [
+                            //开始
+                            {
+                                xAxis:'7月'
+                            },
+                            //结束
+                            {
+                                xAxis:'8月'
+                            }
+                        ],
+                    ]
+                }
+            }
+        ]
+    }
+    myEcharts.setOption(option)
+</script>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../lib/echarts.js"></script>
+</head>
+<body>
+    <div style="width: 600px;height: 400px;" id="echarts"></div>
+</body>
+<script>
+    var myCharts = echarts.init(document.getElementById('echarts'));
+    var xArr = ['张三','张四','张五','张留']
+    var yArr = [28,94,95,98]
+    var option={
+        grid:{
+            show:true,
+            borderWidth:3,
+            top:120,
+            left:120,
+            height:150,
+            width:300
+        },
+        xAxis:{
+            type:'category',
+            data:xArr,
+            position:'top'
+        },
+        yAxis:{
+            type:'value',
+            position:'right'
+        },
+        series:[
+            {
+                name:'语文',
+                type:'bar',
+                //显示详情
+                label:{
+                    show:true,
+                    rotate:60,
+                    position:'inside'
+                },
+                //柱宽度
+                barWidth:30,
+                data:yArr
+            }
+        ]
+    }
+    myCharts.setOption(option)
+</script>
+</html>

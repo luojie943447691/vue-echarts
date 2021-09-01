@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../lib/echarts.js"></script>
+</head>
+<body>
+    <div style="width: 600px;height: 400px;" id="echarts"></div>
+</body>
+<script>
+    var myCharts = echarts.init(document.getElementById('echarts'));
+    //饼图中必须要有name和value属性
+    var pieData = [
+      {
+        name: '淘宝',
+        value: 11231
+      },
+      {
+        name: '京东',
+        value: 22673
+      },
+      {
+        name: '唯品会',
+        value: 6123
+      },
+      {
+        name: '1号店',
+        value: 8989
+      },
+      {
+        name: '聚美优品',
+        value: 6700
+      }
+    ]
+    var option={
+       
+        series:[
+          {
+            type:'pie',
+            data:pieData,
+            label:{
+              show:true,
+              formatter(arg){
+                return arg.data.name + " " + arg.data.value  + "元 "  + arg.percent + "%"
+              }
+            },
+            //设置半径 取长宽中较短的那一边作为百分比的基础数据
+            // radius:'40%'
+            //radius:100
+            //圆环效果
+            // radius:['50%','75%']
+
+            //南丁格尔图
+            // roseType:'radius',
+            //选中效果(点击)
+            // selectedMode:'single'
+            selectedMode:'multiple',
+            selectedOffset:20
+          }
+            
+        ]
+    }
+    myCharts.setOption(option)
+</script>
+</html>

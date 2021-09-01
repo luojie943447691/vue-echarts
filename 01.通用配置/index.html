@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../lib/echarts.js"></script>
+</head>
+<body>
+    <div style="width: 600px;height: 400px;" id="echarts"></div>
+</body>
+<script>
+    var myCharts = echarts.init(document.getElementById('echarts'));
+    var xArr = ['张三','张四','张五','张留']
+    var chinese = [28,94,95,98]
+    var math = [77,34,74,63]
+    var option={
+        //标题 title 通用配置
+        title:{
+            text:'成绩图',
+            textStyle:{
+                color:'red'
+            },
+            borderWidth:2,
+            //left:'50%',
+            shadowColor: 'rgba(0, 0, 0, 0.5)',
+            shadowBlur: 5
+        },
+        //提示 tooltip 通用配置
+        tooltip:{
+            trigger:'item',
+            // trigger:'axis',
+            // triggerOn:'click'
+            triggerOn:'mousemove',
+            // formatter:'hh'
+            // formatter:'{b} 的 {a} 成绩是 {c}'
+            formatter:function(arg){
+                return `${arg[0] ?arg[0].name :  arg.name}的分数是${arg[0] ? arg[0].data :  arg.data}`
+            }
+        },
+        //工具栏 toolbox 通用配置
+        toolbox:{
+            feature:{
+                saveAsImage:{},//保存图片
+                dataView:{},//数据视图
+                restore:{}, //还原配置项
+                dataZoom:{}, //数据缩放
+                magicType: { //动态类型切换
+                    type: ['line', 'bar']
+                }
+            }
+        },
+        //图例 legend 通用配置
+        legend:{
+            name:['语文','数学']
+        },
+        xAxis:{
+            type:'category',
+            data:xArr
+        },
+        yAxis:{
+            type:'value'
+        },
+        series:[
+            {
+                name:'语文',
+                type:'bar',
+                markPoint:{
+                    data:[
+                        //最大值
+                        {type:'max',name:'最大值'},
+                        //最小值
+                        {type:'min',name:'最小值'},
+                    ]
+                },
+                markLine:{
+                    data:[
+                        {
+                            type:'average',name:'平均值'
+                        }
+                    ]
+                },
+                //内部数据的样式
+                label:{
+                    show:true,
+                    rotate:60,
+                    position:'inside'
+                },
+                //柱宽度
+                barWidth:30,
+                data:chinese
+            },
+            {
+                name:'数学',
+                type:'bar',
+                markPoint:{
+                    data:[
+                        //最大值
+                        {type:'max',name:'最大值'},
+                        //最小值
+                        {type:'min',name:'最小值'},
+                    ]
+                },
+                markLine:{
+                    data:[
+                        {
+                            type:'average',name:'平均值'
+                        }
+                    ]
+                },
+                //显示详情
+                label:{
+                    show:true,
+                    rotate:60,
+                    position:'inside'
+                },
+                //柱宽度
+                barWidth:30,
+                data:math
+            }
+        ]
+    }
+    myCharts.setOption(option)
+</script>
+</html>

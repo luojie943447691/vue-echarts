@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../lib/echarts.js"></script>
+</head>
+<body>
+    <div style="width: 600px;height: 400px;" id="echarts"></div>
+</body>
+<script>
+    var myCharts = echarts.init(document.getElementById('echarts'));
+    //饼图中必须要有name和value属性
+    var pieData = [
+      {
+        name: '淘宝',
+        value: 11231
+      },
+      {
+        name: '京东',
+        value: 22673
+      },
+      {
+        name: '唯品会',
+        value: 6123
+      },
+      {
+        name: '1号店',
+        value: 8989
+      },
+      {
+        name: '聚美优品',
+        value: 6700
+      }
+    ]
+    var option={
+       
+        series:[
+          {
+            type:'pie',
+            data:pieData
+          }
+            
+        ]
+    }
+    myCharts.setOption(option)
+</script>
+</html>

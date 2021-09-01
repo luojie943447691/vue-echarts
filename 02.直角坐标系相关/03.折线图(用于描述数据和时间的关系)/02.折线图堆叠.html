@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../lib/echarts.js"></script>
+</head>
+<body>
+    <div style="width: 600px;height: 400px;"></div>
+</body>
+<script>
+    var myEcharts = echarts.init(document.querySelector('div'))
+    var xArr = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
+    var yArr1 = [893,8393,2893,8693,6893,4893,642,4563,2455,7843,8322,2247]
+    var yArr2 = [891,5833,9824,1856,4811,386,3899,3425,6732,7421,6976,3871]
+    var option = {
+        title:{
+            text:'销量图'
+        },
+        tooltip:{},
+        legend:{},
+        xAxis:{
+            type:'category',
+            data:xArr,
+            //紧挨边缘
+            boundaryGap:false
+        },
+        yAxis:{
+            type:'value',
+            //缩放 y轴默认是从0开始的 设置之后从最小值开始
+            scale:true
+        },
+        series:[
+            {
+                name:'康师傅',
+                type:'line',
+                data:yArr1,
+                //平滑
+                smooth:true,
+                //填充风格
+                areaStyle:{
+                    color:'pink'
+                },
+                //堆叠图保证stack的值一样即可
+                stack:'222'
+            },
+            {
+                name:'统一',
+                type:'line',
+                data:yArr2,
+                //平滑
+                smooth:true,
+                //填充风格
+                areaStyle:{
+                    color:'blue'
+                },
+                stack:'222'
+            }
+        ]
+    }
+    myEcharts.setOption(option)
+</script>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../lib/echarts.js"></script>
+</head>
+<body>
+    <div style="width: 600px;height: 400px;" id="echarts"></div>
+</body>
+<script>
+    var myCharts = echarts.init(document.getElementById('echarts'));
+    var xArr = ['张三','张四','张五','张留']
+    var yArr = [28,94,95,98]
+    var option={
+        dataZoom:[
+            {
+                type:'slider',
+                xAxisIndex:0
+                //type:'inside' //滚动鼠标滚轮
+            },
+            {
+                type:'slider',
+                yAxisIndex:0,
+                //指明初始和结束
+                start:50,
+                end:80
+            },
+        ],
+        grid:{
+            show:true,
+            borderWidth:3
+        },
+        // toolbox:{
+        //     //通用配置的dataZoom
+        //     feature:{
+        //         dataZoom:{}, //数据缩放
+        //     }
+        // },
+        xAxis:{
+            type:'category',
+            data:xArr,
+            //position:'top'
+        },
+        yAxis:{
+            type:'value',
+            //position:'right'
+        },
+        series:[
+            {
+                name:'语文',
+                type:'bar',
+                //显示详情
+                label:{
+                    show:true,
+                    rotate:60,
+                    position:'inside'
+                },
+                //柱宽度
+                barWidth:30,
+                data:yArr
+            }
+        ]
+    }
+    myCharts.setOption(option)
+</script>
+</html>

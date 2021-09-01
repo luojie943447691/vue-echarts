@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../lib/echarts.js"></script>
+</head>
+<body>
+    <div style="width: 600px;height: 400px;" id="echarts"></div>
+</body>
+<script>
+    var myCharts = echarts.init(document.getElementById('echarts'))
+    var option={
+        title:{
+            text:'测试标题',
+            link:'https://www.baidu.com'
+        },
+        xAxis:{
+            type:'category',
+            data:['小明','小将','小红']
+        },
+        yAxis:{
+            type:'value',
+        },
+        series:[
+            {
+                name:'语文',
+                type:'bar',
+                data:[50,60,70]
+            }
+        ]
+    }
+    myCharts.setOption(option)
+</script>
+</html>
